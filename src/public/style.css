@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#flex-container {
+    display: flex;
+    flex-flow: column;
+    height:100%;
+}
+
+#flex-container header {
+    flex: 0 1 auto;
+}
+
+#map {
+    flex: 1 1 auto;
+}

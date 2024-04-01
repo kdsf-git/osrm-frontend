@@ -1,5 +1,14 @@
+doctype html
 html 
     head
-        title= title 
+        title= siteTitle
+        link(rel="stylesheet", href="/style.css")
+        link(rel="stylesheet", href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css")
+        script(src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin = "")
     body 
-        h1= title + " " + message
+        div(id="flex-container")
+            header
+                h1= siteTitle 
+            div(id="map")
+            script(src="/script.js") 
+            footer 
