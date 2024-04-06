@@ -97,3 +97,7 @@ html, body {
     height: 100%;
     margin-left: 250px;
 }
+
+footer {
+    margin: 0 auto;
+}
