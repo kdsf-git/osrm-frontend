@@ -9,6 +9,29 @@ html
         div(id="flex-container")
             header
                 h1= siteTitle 
-            div(id="map")
+            div(id="map-container")
+                div(class="sidebar")
+                    button(type="button", class="collapsible")= "Route"
+                    div(class="collapsible-content")
+                        form(action="", onsubmit="routeFormSubmit(this); return false") 
+                            //- div(class="coordinate-input", data-id="0")
+                            //-     input(type="number", name="lng0", required="", step="any")
+                            //-     input(type="number", name="lat0", required="", step="any")
+                            //-     button(type="button")= "Pick"
+                            button(type="button", id="routeAdd", onclick="addCoordinateInputToRoute(this)")= "+"
+                            button(type="button", onclick="removeCoordinateInputFromRoute(this)")= "-"
+                            br
+                            button(type="button", class="collapsible")= "advanced"
+                            div(class="collapsible-content")
+                                label(for="alternatives")= "alternatives"
+                                div(class="tooltip", title="\"true\", \"false\", or number")= "(?)"
+                                input(type="text", name="alternatives", autocomplete="off", value="false")
+                                label(for="overview")= "overview"
+                                div(class="tooltip", title="\"simplified\", \"full\", or \"false\"")= "(?)"
+                                input(type="text", name="overview", autocomplete="off", value="simplified")
+                            br
+                            input(type="submit", value="Calculate")
+                div(id="map")
             script(src="/script.js") 
+            script(src="/route.js")
             footer 

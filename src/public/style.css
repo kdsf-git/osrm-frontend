@@ -13,6 +13,87 @@ html, body {
     flex: 0 1 auto;
 }
 
-#map {
+#map-container {
     flex: 1 1 auto;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    overflow-x: hidden;
+}
+
+.collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #ccc;
+}
+
+.collapsible:after {
+    content: "\25bc";
+    font-size: 15px;
+    float: right;
+    margin-left: 5px;
+}
+
+.active::after {
+    content: "\2796";
+    font-size: 11px;
+}
+
+.collapsible-content {
+    padding: 0 0 0 18px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    text-decoration: none;
+    display: none;
+}
+
+.coordinate-input input[type="number"] {
+    width: 80px;
+}
+
+.tooltip {
+    padding: 0px 5px;
+    color: #444;
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip-text {
+    display: none;
+    position: absolute;
+    width: 100px;
+    color: white;
+    background-color: #444;
+    padding: 5px;
+    border-radius: 5px;
+    float: right;
+}
+
+.tooltip:hover .tooltip-text {
+    display: block;
+}
+
+.map-click-active {
+    background-color: green;
+}
+
+#map {
+    height: 100%;
+    margin-left: 250px;
 }

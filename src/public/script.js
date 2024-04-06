@@ -1,4 +1,27 @@
-const map = L.map("map").setView([0, 0], 0);
+let mapClickCallback = () => {};
+let mapClickCallbackOwner = null;
+
+function setMapClickCallback(owner, callback) {
+    if(mapClickCallbackOwner != null && mapClickCallbackOwner.classList != null)
+        mapClickCallbackOwner.classList.remove("map-click-active");
+    mapClickCallbackOwner = owner;
+    mapClickCallback = callback;
+}
+
+for(const el of document.getElementsByClassName("collapsible")) {
+    el.addEventListener("click", function() {
+        this.classList.toggle("active");
+        if(this.nextElementSibling.style.display === "block") {
+            this.nextElementSibling.style.display = "none";
+        } else {
+            this.nextElementSibling.style.display = "block";
+        }
+    });
+}
+
+
+
+const map = L.map("map").setView([0, 0], 3);
 
 if(location.protocol !== "http") {
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -6,15 +29,10 @@ if(location.protocol !== "http") {
     }, () => {}, {enableHighAccuracy: true});
 }
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+const osmTileLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors" });
+osmTileLayer.addTo(map);
 
 map.on("click", (e) => {
-    fetch("/mapclick?" + new URLSearchParams({
-        lng: e.latlng.lng,
-        lat: e.latlng.lat
-    }));
-    L.popup()
-        .setLatLng([e.latlng.lat, e.latlng.lng])
-        .setContent("Clicked here")
-        .addTo(map);
+    mapClickCallback(e);
+    setMapClickCallback(null, () => {});
 });
