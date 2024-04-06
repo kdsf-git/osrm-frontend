@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "build": "docker build -t kdsf/osrm-frontend:latest -f ../Dockerfile ..",
+    "start": "node index.js"
   },
   "author": "kdsf",
   "license": "ISC",

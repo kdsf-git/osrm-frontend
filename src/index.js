@@ -1,5 +1,4 @@
 const express = require("express");
-const fetch = require("node-fetch");
 const config = require("./config");
 
 const PORT = process.env.PORT || 8080;
